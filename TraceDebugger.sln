@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraceDebugger", "TraceDebugger\TraceDebugger.csproj", "{DCAD10F8-1EE6-4290-9984-3CA78EA0F8DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRMLib", "Libs\FRMLib\FRMLib.csproj", "{6062FC18-1C98-4F9A-BE4C-44171CBCB55E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STDLib", "Libs\STDLib\STDLib.csproj", "{0BAF7C7F-173C-488B-BBEF-D5A0FDD42E77}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCAD10F8-1EE6-4290-9984-3CA78EA0F8DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCAD10F8-1EE6-4290-9984-3CA78EA0F8DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCAD10F8-1EE6-4290-9984-3CA78EA0F8DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCAD10F8-1EE6-4290-9984-3CA78EA0F8DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6062FC18-1C98-4F9A-BE4C-44171CBCB55E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6062FC18-1C98-4F9A-BE4C-44171CBCB55E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6062FC18-1C98-4F9A-BE4C-44171CBCB55E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6062FC18-1C98-4F9A-BE4C-44171CBCB55E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BAF7C7F-173C-488B-BBEF-D5A0FDD42E77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BAF7C7F-173C-488B-BBEF-D5A0FDD42E77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BAF7C7F-173C-488B-BBEF-D5A0FDD42E77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BAF7C7F-173C-488B-BBEF-D5A0FDD42E77}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {63788E56-C77D-401B-B426-73948F1FD829}
+	EndGlobalSection
+EndGlobal
