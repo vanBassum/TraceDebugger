@@ -54,11 +54,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tracing\CMD_EvtMeasurement.cs" />
+    <Compile Include="Tracing\CMD_RequestHorizontalInfo.cs" />
+    <Compile Include="Tracing\CMD_RequestTraceInfo.cs" />
+    <Compile Include="Tracing\CMD_ResponseHorizontalInfo.cs" />
+    <Compile Include="Tracing\CMD_ResponseTraceInfo.cs" />
     <Compile Include="Tracing\HorizontalInfo.cs" />
-    <Compile Include="Tracing\HorTypes.cs" />
-    <Compile Include="Tracing\Measurement.cs" />
-    <Compile Include="Tracing\TraceInfo.cs" />
+    <Compile Include="Tracing\HorizontalTypes.cs" />
+    <Compile Include="Tracing\ICommand.cs" />
+    <Compile Include="Tracing\PackageTypes.cs" />
     <Compile Include="Tracing\TracerConnection.cs" />
+    <Compile Include="Tracing\TracerManager.cs" />
     <Compile Include="Tracing\TraceTypes.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
