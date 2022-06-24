@@ -29,14 +29,17 @@
         private void InitializeComponent()
         {
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.traceView1 = new FRMLib.Scope.Controls.TraceView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.scopeView1 = new FRMLib.Scope.Controls.ScopeView();
             this.markerView1 = new FRMLib.Scope.Controls.MarkerView();
-            this.traceView1 = new FRMLib.Scope.Controls.TraceView();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.button2 = new System.Windows.Forms.Button();
+            this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
@@ -51,6 +54,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button2);
+            this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -58,6 +63,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Console";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Get hor info";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tabPage1
             // 
@@ -69,6 +84,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Markers";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // traceView1
+            // 
+            this.traceView1.DataSource = null;
+            this.traceView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.traceView1.Location = new System.Drawing.Point(3, 3);
+            this.traceView1.Name = "traceView1";
+            this.traceView1.Size = new System.Drawing.Size(353, 439);
+            this.traceView1.TabIndex = 2;
             // 
             // menuStrip1
             // 
@@ -97,6 +121,26 @@
             this.splitContainer3.Size = new System.Drawing.Size(714, 471);
             this.splitContainer3.SplitterDistance = 367;
             this.splitContainer3.TabIndex = 1;
+            // 
+            // scopeView1
+            // 
+            this.scopeView1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.scopeView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.scopeView1.DataSource = null;
+            this.scopeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scopeView1.Location = new System.Drawing.Point(0, 24);
+            this.scopeView1.Name = "scopeView1";
+            this.scopeView1.Size = new System.Drawing.Size(714, 343);
+            this.scopeView1.TabIndex = 2;
+            // 
+            // markerView1
+            // 
+            this.markerView1.DataSource = null;
+            this.markerView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.markerView1.Location = new System.Drawing.Point(0, 0);
+            this.markerView1.Name = "markerView1";
+            this.markerView1.Size = new System.Drawing.Size(714, 100);
+            this.markerView1.TabIndex = 1;
             // 
             // splitContainer1
             // 
@@ -127,34 +171,15 @@
             this.tabControl1.Size = new System.Drawing.Size(367, 471);
             this.tabControl1.TabIndex = 1;
             // 
-            // scopeView1
+            // button2
             // 
-            this.scopeView1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.scopeView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.scopeView1.DataSource = null;
-            this.scopeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scopeView1.Location = new System.Drawing.Point(0, 24);
-            this.scopeView1.Name = "scopeView1";
-            this.scopeView1.Size = new System.Drawing.Size(714, 343);
-            this.scopeView1.TabIndex = 2;
-            // 
-            // markerView1
-            // 
-            this.markerView1.DataSource = null;
-            this.markerView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.markerView1.Location = new System.Drawing.Point(0, 0);
-            this.markerView1.Name = "markerView1";
-            this.markerView1.Size = new System.Drawing.Size(714, 100);
-            this.markerView1.TabIndex = 1;
-            // 
-            // traceView1
-            // 
-            this.traceView1.DataSource = null;
-            this.traceView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.traceView1.Location = new System.Drawing.Point(3, 3);
-            this.traceView1.Name = "traceView1";
-            this.traceView1.Size = new System.Drawing.Size(353, 439);
-            this.traceView1.TabIndex = 2;
+            this.button2.Location = new System.Drawing.Point(6, 35);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Get hor info";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
@@ -165,6 +190,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.tabPage2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel1.PerformLayout();
@@ -190,6 +216,8 @@
         private FRMLib.Scope.Controls.TraceView traceView1;
         private FRMLib.Scope.Controls.ScopeView scopeView1;
         private FRMLib.Scope.Controls.MarkerView markerView1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
