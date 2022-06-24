@@ -2,50 +2,56 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-
 namespace TraceDebugger.Tracing
 {
-
-    public enum PackageTypes
-    {
-        EVT_Measurement = 1,
-        REQ_HorizontalInfo = 2,
-        RES_HorizontalInfo = 3,
-        REQ_TraceInfo = 4,
-        RES_TraceInfo = 5,
-    }
-
-    public interface ICommand
-    {
-        PackageTypes PackageType { get; }
-    }
-
-
-
-
-
-
 
 
     public class TracerConnection
     {
         TcpSocketClient socket;
-        public event EventHandler<Measurement> MeasurementReceived;
+        public event EventHandler<ICommand> CommandReceived;
 
-        TaskCompletionSource<HorizontalInfo> tcs_HorizontalInfo = new TaskCompletionSource<HorizontalInfo>();
-        TaskCompletionSource<TraceInfo> tcs_TraceInfo = new TaskCompletionSource<TraceInfo>();
 
         public TracerConnection()
         {
             socket = new TcpSocketClient();
         }
 
-        public async Task Connect(string host)
+        public async Task ConnectAsync(string host)
         {
             await socket.ConnectAsync(host);
             socket.OnDataRecieved += Socket_OnDataRecieved;
         }
 
+        private void Socket_OnDataRecieved(object sender, byte[] e)
+        {
+            if (e.Length < 1)
+                return;
+
+            if (GetCommand((PackageTypes)e[0]) is ICommand cmd)
+            {
+                if(cmd.Deserialize(e))
+                    CommandReceived?.Invoke(this, cmd);
+            }
+        }
+
+        ICommand GetCommand(PackageTypes type)
+        {
+            switch(type)
+            {
+                case PackageTypes.EVT_Measurement: return new CMD_EvtMeasurement();
+                case PackageTypes.REQ_TraceInfo: return new CMD_RequestTraceInfo();
+                case PackageTypes.RES_TraceInfo: return new CMD_ResponseTraceInfo();
+                case PackageTypes.REQ_HorizontalInfo: return new CMD_RequestHorizontalInfo();
+                case PackageTypes.RES_HorizontalInfo: return new CMD_ResponseHorizontalInfo();
+                default: return null;
+            }
+        }
+
+
+
+
+        /*
         public async Task<HorizontalInfo> RequestHorizontalInfo(CancellationTokenSource cts = null)
         {
             if (cts == null)
@@ -89,5 +95,6 @@ namespace TraceDebugger.Tracing
                     break;
             }
         }
+        */
     }
 }

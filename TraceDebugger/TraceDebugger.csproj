@@ -54,6 +54,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tracing\HorizontalInfo.cs" />
+    <Compile Include="Tracing\HorTypes.cs" />
+    <Compile Include="Tracing\Measurement.cs" />
+    <Compile Include="Tracing\TraceInfo.cs" />
+    <Compile Include="Tracing\TracerConnection.cs" />
+    <Compile Include="Tracing\TraceTypes.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

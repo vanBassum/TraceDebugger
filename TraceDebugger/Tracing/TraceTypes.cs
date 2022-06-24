@@ -1,6 +1,6 @@
 ﻿namespace TraceDebugger.Tracing
 {
-    enum TraceTypes
+    public enum TraceTypes
     {
         Analog = 1,
         Digital = 2,

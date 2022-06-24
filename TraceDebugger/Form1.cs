@@ -4,14 +4,15 @@ using STDLib.Math;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using TraceDebugger.Tracing;
 
 namespace TraceDebugger
 {
     public partial class Form1 : Form
     {
-        TracerConnection tracer;
+        TracerManager tracerManager;
         ScopeController scope;
-        Dictionary<int, Trace> traces = new Dictionary<int, Trace>();
+        
 
         public Form1()
         {
@@ -25,7 +26,6 @@ namespace TraceDebugger
         private void Form1_Load(object sender, EventArgs e)
         {
             scope = new ScopeController();
-            tracer = new TracerConnection();
             traceView1.DataSource = scope;
             scopeView1.DataSource = scope;
             markerView1.DataSource = scope;
@@ -36,11 +36,14 @@ namespace TraceDebugger
             scope.Settings.HorizontalToHumanReadable = (a) => (a / 1000000).ToString("F0") + "s";
             scope.Settings.HorSnapSize = 1000000f;
 
-            tracer.Connect("192.168.35.109:31600");
-            tracer.MeasurementReceived += Tracer_MeasurementReceived;
+            tracerManager = new TracerManager(scope);
+            tracerManager.ConnectAsync("192.168.35.109:31600");
+            //tracer.MeasurementReceived += Tracer_MeasurementReceived;
 
         }
 
+
+        /*
         private void Tracer_MeasurementReceived(object sender, Measurement measurement)
         {
             Trace trace = null;
@@ -107,27 +110,28 @@ namespace TraceDebugger
 
 
         }
+        */
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            if (sender is Button button)
-            {
-                button.Enabled = false;
-                var horInfo = await tracer.RequestHorizontalInfo();
-                ApplyHorizontalInfo(horInfo);
-                button.Enabled = true;
-            }
+            //if (sender is Button button)
+            //{
+            //    button.Enabled = false;
+            //    var horInfo = await tracer.RequestHorizontalInfo();
+            //    ApplyHorizontalInfo(horInfo);
+            //    button.Enabled = true;
+            //}
         }
 
         private async void button2_Click(object sender, EventArgs e)
         {
-            if (sender is Button button)
-            {
-                button.Enabled = false;
-                var info = await tracer.RequestTraceInfo(1);
-                ApplyTraceInfo(info);
-                button.Enabled = true;
-            }
+            //if (sender is Button button)
+            //{
+            //    button.Enabled = false;
+            //    var info = await tracer.RequestTraceInfo(1);
+            //    ApplyTraceInfo(info);
+            //    button.Enabled = true;
+            //}
         }
     }
 
