@@ -1,21 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using FRMLib.Scope;
 using STDLib.Math;
 
 namespace TraceDebugger.Tracing
 {
+    /*
     public class TracerManager
     {
         TracerConnection connection;
-        ScopeController scopeController;
         Dictionary<int, Trace> traces = new Dictionary<int, Trace>();
 
-        public TracerManager(ScopeController scopeController)
+        public TracerManager()
         {
             connection = new TracerConnection();
             connection.CommandReceived += Connection_CommandReceived;
-            this.scopeController = scopeController;
         }
 
         public async Task ConnectAsync(string host)
@@ -38,7 +38,9 @@ namespace TraceDebugger.Tracing
                 //});
             }
 
-            trace.Points.Add(new PointD(cmd.XValue, cmd.YValue));
+            var dt = DateTimeOffset.FromUnixTimeSeconds((int)cmd.XValue).DateTime;
+
+            trace.Points.Add(new PointD(dt.Ticks, cmd.YValue));
 
             scopeController.RedrawAll();
             
@@ -57,4 +59,5 @@ namespace TraceDebugger.Tracing
         }
 
     }
+    */
 }

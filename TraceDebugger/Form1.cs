@@ -10,7 +10,7 @@ namespace TraceDebugger
 {
     public partial class Form1 : Form
     {
-        TracerManager tracerManager;
+        TracerConnection tracerManager;
         ScopeController scope;
         
 
@@ -33,14 +33,65 @@ namespace TraceDebugger
             scope.Settings.DrawScalePosVertical = DrawPosVertical.Right;
             scope.Settings.DrawScalePosHorizontal = DrawPosHorizontal.Bottom;
             scope.Settings.HorizontalDivisions = 10;
-            scope.Settings.HorizontalToHumanReadable = (a) => (a / 1000000).ToString("F0") + "s";
-            scope.Settings.HorSnapSize = 1000000f;
+            //scope.Settings.HorScale = TimeSpan.FromMinutes(10).Ticks;
+            //scope.Settings.HorOffset = DateTime.Now.Ticks;
+            //scope.Settings.HorizontalToHumanReadable = (a) => (a / 1000000).ToString("F0") + "s";
+            //scope.Settings.HorSnapSize = 1000000f;
 
-            tracerManager = new TracerManager(scope);
-            tracerManager.ConnectAsync("192.168.35.109:31600");
-            //tracer.MeasurementReceived += Tracer_MeasurementReceived;
+
+            scope.Settings.HorizontalToHumanReadable = TicksToString;
+
+            tracerManager = new TracerConnection();
+            tracerManager.ConnectAsync("192.168.11.120:31600");
+            tracerManager.CommandReceived += Tracer_MeasurementReceived;
 
         }
+
+        static string TicksToString(double ticks)
+        {
+            DateTime dt = new DateTime((long)ticks);
+            return dt.ToString("dd-MM-yyyy") + " \r\n" + dt.ToString("HH:mm:ss");
+        }
+
+        private void Tracer_MeasurementReceived(object sender, ICommand e)
+        {
+            switch (e)
+            {
+                case CMD_EvtMeasurement cmd:
+                    HandleCommand(cmd);
+                    break;
+            }
+
+        }
+
+
+        Dictionary<int, Trace> traces = new Dictionary<int, Trace>();
+        void HandleCommand(CMD_EvtMeasurement cmd)
+        {
+            Trace trace = null;
+            if (!traces.TryGetValue(cmd.TraceNo, out trace))
+            {
+                traces[cmd.TraceNo] = trace = new Trace();
+                scope.Traces.Add(trace);
+                //Task.Run(async () =>
+                //{
+                //    TraceInfo traceInfo = await tracer.RequestTraceInfo(measurement.TraceNo);
+                //    ApplyTraceInfo(traceInfo);
+                //});
+            }
+
+            var dt = DateTimeOffset.FromUnixTimeSeconds((long)cmd.XValue).DateTime;
+
+            trace.Points.Add(new PointD(dt.Ticks, cmd.YValue));
+
+
+            this.InvokeIfRequired(()=> scope.RedrawAll());
+
+        }
+
+
+        
+
 
 
         /*
